@@ -1,26 +1,17 @@
 import React from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
-
-import Gallery from './Gallery';
+import { NavLink } from 'react-router-dom';
 
 
-const Navigation = ({ onSearch }) => {
-
-  const searchValue = e => {
-    onSearch(e.target.innerText)
-  };
+const Navigation = (props) => {
 
   return (
-    <nav class="main-nav">
+    <nav className="main-nav">
       <ul>
-        <li><NavLink to={`/cats`} onClick={searchValue}>Cats</NavLink></li>
-        <li><NavLink to={`/dogs`} onClick={searchValue}>Dogs</NavLink></li>
-        <li><NavLink to={`/computers`} onClick={searchValue}>Computers</NavLink></li>
+        <li><NavLink to={`/gallery/nature`} onClick={() => props.onSearch('nature')} >Nature </NavLink></li>
+        <li><NavLink to={`/gallery/slow-loris`} onClick={() => props.onSearch('slow-loris')} > Slow loris </NavLink></li>
+        <li><NavLink to={`/gallery/savanna`} onClick={() => props.onSearch('savanna')} > Savanna </NavLink></li>
       </ul>
-
-
     </nav>
-
   )
 }
 

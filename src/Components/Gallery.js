@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Photo from './Photo';
+import { withRouter } from 'react-router';
 
-const Gallery = (props) => {
+class Gallery extends Component {
 
-  const results = props.data;
+  componentDidMount() {
+    this.input = this.props.match.params.input;
+    this.props.onSearch(this.input)
+  }
+
   // todo: add <NoPhotos/>
-  let photos = results.map(photo => (
-    <Photo {...photo} />
-  ))
 
-  return (
-    <div className="photo-container">
-      <h2>Results: {props.query}</h2>
-      <ul>
-        {photos}
-      </ul>
-    </div>
-  )
+  render() {
+    const results = this.props.data
+    let photos = results.map(photo => <Photo {...photo} />)
+
+    return (
+      <div className="photo-container">
+        <h2>{this.props.query.toUpperCase()} </h2>
+        <ul>
+          {photos}
+        </ul>
+      </div>
+    )
+  }
 }
 
-export default Gallery;
+export default withRouter(Gallery);

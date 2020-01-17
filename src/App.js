@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 // Import Components
@@ -16,23 +16,20 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: 'nature',
       photos: [],
+      query: '',
       loading: true
     }
   }
 
-  componentDidMount() {
-    this.performSearch()
-  }
 
-
-  performSearch = (query = this.state.query) => {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${numOfPhotos}&format=json&nojsoncallback=1`)
-      .then((res) => {
+  performSearch = (query) => {
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${numOfPhotos}&format=json&nojsoncallback=1`
+    axios.get(url)
+      .then(res => {
         this.setState({
-          query: query.toUpperCase(),
-          photos: res.data.photos.photo
+          photos: res.data.photos.photo,
+          query: query
         })
       })
       .catch(error => {
@@ -40,18 +37,22 @@ export default class App extends Component {
       });
   }
 
+
   render() {
-    console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
-          <Route path="/" render={() => <SearchForm onSearch={this.performSearch} />} />
-          <Route path="/" render={() => <Navigation onSearch={this.performSearch} />} />
-          <Route path="/" render={() => <Gallery data={this.state.photos} query={this.state.query} />} />
+          <SearchForm onSearch={this.performSearch} />
+          <Navigation onSearch={this.performSearch} />
+          <Route exact path="(/|/gallery)" render={() => <Redirect to="/gallery/nature" />} />
+          <Route exact path="/gallery/:input" render={() => (
+            <Gallery
+              data={this.state.photos}
+              query={this.state.query}
+              onSearch={this.performSearch} />
+          )} />
         </div>
       </BrowserRouter>
-
     );
   }
-
 }
