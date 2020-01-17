@@ -18,7 +18,7 @@ export default class App extends Component {
     super();
     this.state = {
       photos: [],
-      query: '',
+      title: '',
       loading: true
     }
   }
@@ -30,7 +30,8 @@ export default class App extends Component {
       .then(res => {
         this.setState({
           photos: res.data.photos.photo,
-          query: query
+          title: query,
+          loading: false
         })
       })
       .catch(error => {
@@ -45,12 +46,13 @@ export default class App extends Component {
         <div className="container">
           <SearchForm onSearch={this.performSearch} />
           <Navigation onSearch={this.performSearch} />
+
           <Switch>
             <Route exact path="(/|/gallery)" render={() => <Redirect to="/gallery/nature" />} />
             <Route exact path="/gallery/:input" render={() => (
               <Gallery
                 data={this.state.photos}
-                query={this.state.query}
+                title={this.state.title}
                 onSearch={this.performSearch} />
             )} />
             <Route component={NotFound} />

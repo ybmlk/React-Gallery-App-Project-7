@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Photo from './Photo';
 import { withRouter } from 'react-router';
+import NotFound from './NotFound';
 
 class Gallery extends Component {
 
@@ -9,20 +10,28 @@ class Gallery extends Component {
     this.props.onSearch(this.input)
   }
 
-  // todo: add <NoPhotos/>
-
   render() {
     const results = this.props.data
-    let photos = results.map((photo, index) => (
-      <Photo
-        {...photo}
-        key={index}
-      />
-    ))
+    let photos;
+    let title;
+
+    if (results.length > 0) {
+      photos = results.map((photo, index) => (
+        <Photo
+          {...photo}
+          key={index}
+        />
+      ))
+
+      title = this.props.title.toUpperCase()
+    } else {
+      photos = <NotFound />
+    }
+
 
     return (
       <div className="photo-container">
-        <h2>{this.props.query.toUpperCase()} </h2>
+        <h2>{title} </h2>
         <ul>
           {photos}
         </ul>
