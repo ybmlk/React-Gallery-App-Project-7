@@ -53,6 +53,7 @@ export default class App extends Component {
               <Gallery
                 data={this.state.photos}
                 title={this.state.title}
+                loading={this.state.loading}
                 onSearch={this.performSearch} />
             )} />
             <Route component={Page404} />
