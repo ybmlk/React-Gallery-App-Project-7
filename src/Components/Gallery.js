@@ -13,7 +13,12 @@ class Gallery extends Component {
 
   render() {
     const results = this.props.data
-    let photos = results.map(photo => <Photo {...photo} />)
+    let photos = results.map((photo, index) => (
+      <Photo
+        {...photo}
+        key={index}
+      />
+    ))
 
     return (
       <div className="photo-container">
