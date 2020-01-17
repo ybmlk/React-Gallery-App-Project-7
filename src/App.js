@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import axios from 'axios';
 
 // Import Components
 import SearchForm from './Components/SearchForm';
 import Navigation from './Components/Navigation';
 import Gallery from './Components/Gallery';
-import axios from 'axios';
 
 // Import Api-key
 import apiKey from './config';
@@ -15,6 +16,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      query: 'nature',
       photos: [],
       loading: true
     }
@@ -25,10 +27,11 @@ export default class App extends Component {
   }
 
 
-  performSearch = (query = 'nature') => {
+  performSearch = (query = this.state.query) => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${numOfPhotos}&format=json&nojsoncallback=1`)
       .then((res) => {
         this.setState({
+          query: query.toUpperCase(),
           photos: res.data.photos.photo
         })
       })
@@ -40,11 +43,14 @@ export default class App extends Component {
   render() {
     console.log(this.state.photos);
     return (
-      <div className="container">
-        <SearchForm />
-        <Navigation />
-        <Gallery data={this.state.photos} />
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <Route path="/" render={() => <SearchForm onSearch={this.performSearch} />} />
+          <Route path="/" render={() => <Navigation onSearch={this.performSearch} />} />
+          <Route path="/" render={() => <Gallery data={this.state.photos} query={this.state.query} />} />
+        </div>
+      </BrowserRouter>
+
     );
   }
 
