@@ -6,7 +6,7 @@ import axios from 'axios';
 import SearchForm from './Components/SearchForm';
 import Navigation from './Components/Navigation';
 import Gallery from './Components/Gallery';
-import NotFound from './Components/NotFound';
+import Page404 from './Components/Page404';
 
 // Import Api-key
 import apiKey from './config';
@@ -55,7 +55,7 @@ export default class App extends Component {
                 title={this.state.title}
                 onSearch={this.performSearch} />
             )} />
-            <Route component={NotFound} />
+            <Route component={Page404} />
           </Switch>
 
         </div>
