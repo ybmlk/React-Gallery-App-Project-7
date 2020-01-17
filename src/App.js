@@ -21,11 +21,11 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.performSearch('cats')
+    this.performSearch()
   }
 
 
-  performSearch = (query) => {
+  performSearch = (query = 'nature') => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${numOfPhotos}&format=json&nojsoncallback=1`)
       .then((res) => {
         this.setState({
@@ -43,7 +43,7 @@ export default class App extends Component {
       <div className="container">
         <SearchForm />
         <Navigation />
-        <Gallery />
+        <Gallery data={this.state.photos} />
       </div>
     );
   }
