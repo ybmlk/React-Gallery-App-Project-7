@@ -3,6 +3,9 @@
 
 ## Description
 > This program is a photo gallery that fetches photos from the Flickr API and displays them.
+> 
+> To Visit the app:
+[Click here](https://flickr-react-gallery-app.netlify.com/)
 
 > Program features:
 > * Allows searching for all kinds of images 
@@ -25,7 +28,7 @@ export default apiKey;
 
 > Yonatan Melka 
 
-#==============================================================================================
+#==============================================================================#
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
