@@ -1,3 +1,32 @@
+# React Gallery App
+
+
+## Description
+> This program is a photo gallery that fetches photos from the Flickr API and displays them.
+
+> Program features:
+> * Allows searching for all kinds of images 
+> * The navigation buttons display 'nature', 'Slow loris', and 'Savanna' photos
+
+> Styling Changes:
+> * Background color of the body is slightly grey
+> * The Navigation buttons and the search bar border are light blue
+
+> To run this program:
+> * Step 1: create a 'config.js' file inside the 'src' folder
+> * Step 2: Inside the config.js file:
+```
+const apiKey = '{your flickr API key}';
+export default apiKey;
+```
+> * Step 3: Run `npm start`
+
+## Contributor
+
+> Yonatan Melka 
+
+#==============================================================================================
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
