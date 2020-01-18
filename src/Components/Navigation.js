@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 const Navigation = (props) => {
 
+  // Fetchs from Flickr API when buttons are clicked
+  // And updates the current route 
   return (
     <nav className="main-nav">
       <ul>

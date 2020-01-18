@@ -10,7 +10,10 @@ import Page404 from './Components/Page404';
 
 // Import Api-key
 import apiKey from './config';
+// Refers to the number of photos displyed 
 const numOfPhotos = 24;
+
+
 
 export default class App extends Component {
 
@@ -23,13 +26,14 @@ export default class App extends Component {
     }
   }
 
-
+  // Fetches photos from Flickr API and updates the states
   performSearch = (query) => {
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${numOfPhotos}&format=json&nojsoncallback=1`
     axios.get(url)
       .then(res => {
         this.setState({
           photos: res.data.photos.photo,
+          // The argument passed to this function will be the title
           title: query,
           loading: false
         })

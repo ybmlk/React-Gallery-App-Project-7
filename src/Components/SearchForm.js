@@ -3,6 +3,8 @@ import { withRouter } from 'react-router';
 
 class SearchForm extends Component {
 
+  // Fetchs from Flickr API based on the search input 
+  // updates the current route
   handleSubmit = e => {
     e.preventDefault();
     const searchText = this.searchInput.value

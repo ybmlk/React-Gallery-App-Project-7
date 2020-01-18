@@ -16,13 +16,16 @@ class Gallery extends Component {
     let photos;
     let title;
 
+    // If the current photo state isn't empty, it renders <Photo /> for each item(photo) 
     if (results.length > 0) {
       photos = results.map((photo, index) => <Photo {...photo} key={index} />)
       title = this.props.title.toUpperCase()
 
+      // If API is still fetiching(loading), it renders <Loading />
     } else if (this.props.loading) {
       photos = <Loading />
 
+      // After it finishes loading if there is no data, it renders <NotFound />
     } else {
       photos = <NotFound />
     }
