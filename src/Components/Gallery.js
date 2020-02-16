@@ -30,7 +30,7 @@ class Gallery extends Component {
 
     return (
       <div className='photo-container'>
-        <h2>{photos.length && title.toUpperCase()}</h2>
+        <h2>{photos.length ? title.toUpperCase() : null}</h2>
         <ul>{output}</ul>
       </div>
     );

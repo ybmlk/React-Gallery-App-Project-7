@@ -7,6 +7,7 @@ import SearchForm from './Components/SearchForm';
 import Navigation from './Components/Navigation';
 import Gallery from './Components/Gallery';
 import Page404 from './Components/Page404';
+import Pagination from './Components/Pagination';
 
 // Import Api-key
 import apiKey from './config';
@@ -53,16 +54,12 @@ export default class App extends Component {
             <Route
               exact
               path='/gallery/:input'
-              render={() => (
-                <Gallery
-                  {...this.state}
-                  onSearch={this.performSearch}
-                />
-              )}
+              render={() => <Gallery {...this.state} onSearch={this.performSearch} />}
             />
             <Route component={Page404} />
           </Switch>
-          
+
+          <Pagination />
         </div>
       </BrowserRouter>
     );

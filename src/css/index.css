@@ -2,7 +2,7 @@ body {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   color: #3f4850;
-  background-color: #F3F5F6;
+  background-color: #f3f5f6;
 }
 
 h2 {
@@ -28,7 +28,7 @@ a {
 
 .search-form button {
   outline: none;
-  background-color: #1C9BE9;
+  background-color: #1c9be9;
   border: none;
   padding: 0px 15px;
   border-radius: 0 0.35em 0.35em 0;
@@ -38,9 +38,9 @@ a {
 input {
   font-size: 1em;
   width: 100%;
-  background-color: #F3F5F6;
+  background-color: #f3f5f6;
   padding: 10px 15px;
-  border: 3px solid #1C9BE9;
+  border: 3px solid #1c9be9;
   border-right: none;
   border-radius: 0.35em 0 0 0.35em;
   outline: none;
@@ -53,7 +53,7 @@ input {
 
 .main-nav a {
   display: block;
-  background:#1C9BE9;
+  background: #1c9be9;
   border-radius: 3px;
   padding: 5px;
   color: #fff;
@@ -94,7 +94,7 @@ input {
   width: 100%;
 }
 
-@media only screen and (max-width: 767px)  {
+@media only screen and (max-width: 767px) {
   body {
     padding-top: 2em;
   }
@@ -104,7 +104,7 @@ input {
   }
 }
 
-@media only screen and (min-width: 768px)  {
+@media only screen and (min-width: 768px) {
   body {
     padding-top: 4em;
   }
@@ -118,9 +118,39 @@ input {
     display: flex;
     justify-content: center;
   }
-  
+
   .main-nav li {
     margin: 10px;
     width: 100px;
   }
+}
+
+/* pagination styles */
+.pagination {
+  margin: 40px 0 0 0;
+  text-align: center;
+}
+
+.pagination ul li {
+  display: inline;
+  line-height: 70px;
+  margin: 0.5rem;
+}
+
+.greyButton {
+  padding: 0.7rem 1.2rem; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: top;
+  font-weight: 700;
+  font-size: 1em;
+  color: #fff;
+  background-color: #1c9be9;
+}
+
+.pagination .active,
+.pagination button:hover {
+  background-color: #275270;
 }
