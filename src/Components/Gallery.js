@@ -5,40 +5,35 @@ import NotFound from './NotFound';
 import Loading from './Loading';
 
 class Gallery extends Component {
-
   componentDidMount() {
+    // Responds to inputs provided directly in the url bar
     this.input = this.props.match.params.input;
-    this.props.onSearch(this.input)
+    this.props.onSearch(this.input);
   }
 
   render() {
-    const results = this.props.data
-    let photos;
-    let title;
+    const { photos, loading, title } = this.props;
+    let output;
 
-    // If the current photo state isn't empty, it renders <Photo /> for each item(photo) 
-    if (results.length > 0) {
-      photos = results.map((photo, index) => <Photo {...photo} key={index} />)
-      title = this.props.title.toUpperCase()
+    // If the current photo state isn't empty, it renders <Photo /> for each item(photo)
+    if (photos.length) {
+      output = photos.map((photo, index) => <Photo {...photo} key={index} />);
 
       // If API is still fetiching(loading), it renders <Loading />
-    } else if (this.props.loading) {
-      photos = <Loading />
+    } else if (loading) {
+      output = <Loading />;
 
       // After it finishes loading if there is no data, it renders <NotFound />
     } else {
-      photos = <NotFound />
+      output = <NotFound />;
     }
 
-
     return (
-      <div className="photo-container">
-        <h2>{title} </h2>
-        <ul>
-          {photos}
-        </ul>
+      <div className='photo-container'>
+        <h2>{photos.length && title.toUpperCase()}</h2>
+        <ul>{output}</ul>
       </div>
-    )
+    );
   }
 }
 

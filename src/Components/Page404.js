@@ -9,6 +9,6 @@ const Page404 = ({ location }) => (
       <code>"{location.pathname}"</code> is not available
     </h3>
   </div>
-)
+);
 
-export default withRouter(Page404)
+export default withRouter(Page404);
