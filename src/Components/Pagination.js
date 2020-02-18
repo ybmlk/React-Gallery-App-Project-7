@@ -2,34 +2,74 @@ import React, { Component } from 'react';
 
 class Pagination extends Component {
   state = {
-    pageStart: 1,
+    pages: [1, 2, 3, 4, 5],
+    currentPage: 1,
   };
 
   handleNext = () => {
-    this.setState(prevState => ({ pageStart: prevState.pageStart + 1 }));
+    const lastPage = this.state.pages[4];
+    if (this.state.currentPage === lastPage) {
+      this.setState(prevState => {
+        prevState.pages.shift();
+        return { pages: prevState.pages };
+      });
+      this.setState(prevState => {
+        prevState.pages.push(lastPage + 1);
+        return { pages: prevState.pages };
+      });
+    }
+    this.setState(prevState => ({ currentPage: prevState.currentPage + 1 }));
   };
+
+  handlePrev = () => {
+    const firstPage = this.state.pages[0];
+    if (this.state.currentPage === firstPage && firstPage !== 1) {
+      this.setState(prevState => {
+        prevState.pages.pop();
+        return { pages: prevState.pages };
+      });
+      this.setState(prevState => {
+        prevState.pages.unshift(firstPage - 1);
+        return { pages: prevState.pages };
+      });
+    }
+    this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
+  };
+
+  setCurrentPage = e => {
+    const newPage = parseInt(e.target.innerText);
+    this.setState(() => ({ currentPage: newPage }));
+  };
+
   render() {
-    const arr = [1, 2, 3, 4, 5];
-    const { pageStart } = this.state;
-    console.log(pageStart);
+    const { pages, currentPage } = this.state;
     return (
       <div className='pagination'>
         <ul>
           <li>
-            <button className='greyButton prevButton'> Previous </button>
+            <button
+              className='greyButton prevButton'
+              onClick={this.handlePrev}
+              disabled={currentPage === 1 && true}
+            >
+              Previous
+            </button>
           </li>
-          {arr.map((num, i) => {
-            const pageNum = i + pageStart;
+          {pages.map((page, i) => {
             return (
               <li key={i}>
-                <button className='greyButton'>{pageNum}</button>
+                <button
+                  className={currentPage === page ? 'greyButton active' : 'greyButton'}
+                  onClick={this.setCurrentPage}
+                >
+                  {page}
+                </button>
               </li>
             );
           })}
           <li>
             <button className='greyButton nextButton' onClick={this.handleNext}>
-              {' '}
-              Next{' '}
+              Next
             </button>
           </li>
         </ul>
