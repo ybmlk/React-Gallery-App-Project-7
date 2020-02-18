@@ -14,16 +14,27 @@ class Pagination extends Component {
     currentPage: 1,
   };
 
-  // When there's change in 'currentPage' state 'this.search()' is called
   componentDidUpdate(prevProps, prevState) {
     const query = this.props.context.state.title;
+    /* When a new query/title is searched it resets to page 1 */
+    if (prevProps.context.state.title !== query) {
+      this.setState({ pages: [1, 2, 3, 4, 5] });
+      this.setCurrentPage(1);
+    }
+    /* When there's change in 'currentPage' state 'this.search()' is called
+    it's fetching the same query/title but different page (currentPage) */
     if (prevState.currentPage !== this.state.currentPage) {
       this.search(query);
+      // Scrolls the screen to the top
+      window.scrollTo({
+        top: 240,
+        behavior: 'smooth',
+      });
     }
   }
 
-  /* If the 'currenPage' in context is d/t from the 'currentPage'  
-  in this component, it will update this state to match the context */
+  /* If the 'currenPage' in context is d/t from the 'currentPage' in this component, 
+  it will update this state's 'currenPage' to match that of the context */
   static getDerivedStateFromProps(nextProps, prevState) {
     const contextCurrentPage = nextProps.context.state.currentPage;
     if (prevState.currentPage !== contextCurrentPage) {
