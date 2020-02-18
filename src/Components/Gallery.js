@@ -9,7 +9,7 @@ class Gallery extends Component {
     const { context } = this.props;
     // Responds to inputs provided directly in the url bar
     this.input = this.props.match.params.input;
-    context.search(this.input);
+    context.action.search(this.input);
   }
 
   render() {

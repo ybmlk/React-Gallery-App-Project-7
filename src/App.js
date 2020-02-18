@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import withContext from './Context';
 
@@ -9,28 +9,27 @@ import Gallery from './Components/Gallery';
 import Page404 from './Components/Page404';
 import Pagination from './Components/Pagination';
 
-// Link to context
+// Connect componets to context
 const SearchFormWithContext = withContext(SearchForm);
 const NavigationWithContext = withContext(Navigation);
 const GalleryWithContext = withContext(Gallery);
+const PaginationWithContext = withContext(Pagination);
 
-export default class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div className='container'>
-          <SearchFormWithContext />
-          <NavigationWithContext />
+const App = () => (
+  <BrowserRouter>
+    <div className='container'>
+      <SearchFormWithContext />
+      <NavigationWithContext />
 
-          <Switch>
-            <Route exact path='(/|/gallery)' render={() => <Redirect to='/gallery/nature' />} />
-            <Route exact path='/gallery/:input' component={GalleryWithContext} />
-            <Route component={Page404} />
-          </Switch>
+      <Switch>
+        <Route exact path='(/|/gallery)' render={() => <Redirect to='/gallery/nature' />} />
+        <Route exact path='/gallery/:input' component={GalleryWithContext} />
+        <Route component={Page404} />
+      </Switch>
 
-          <Pagination />
-        </div>
-      </BrowserRouter>
-    );
-  }
-}
+      <PaginationWithContext />
+    </div>
+  </BrowserRouter>
+);
+
+export default App;

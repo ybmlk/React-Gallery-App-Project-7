@@ -8,18 +8,17 @@ const numOfPhotos = 24;
 const Context = React.createContext();
 
 class Provider extends Component {
-  constructor() {
-    super();
-    this.state = {
-      photos: [],
-      title: '',
-      loading: true,
-    };
-  }
+  state = {
+    photos: [],
+    title: '',
+    loading: true,
+    currentPage: 1,
+  };
 
   // Fetches photos from Flickr API and updates the states
   performSearch = query => {
-    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${numOfPhotos}&format=json&nojsoncallback=1`;
+    const pageNum = this.state.currentPage;
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${numOfPhotos}&page=${pageNum}&format=json&nojsoncallback=1`;
     axios
       .get(url)
       .then(res => {
@@ -34,10 +33,31 @@ class Provider extends Component {
         console.log('Error fetching and parsing data', error);
       });
   };
+
+  // called when 'next' is clicked
+  incrementPage = () => {
+    this.setState(prevState => ({ currentPage: prevState.currentPage + 1 }));
+  };
+
+  // Called when 'previous' is clicked
+  decrementPage = () => {
+    this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
+  };
+
+  // Make the cliked page active
+  setCurrentPage = page => {
+    this.setState(() => ({ currentPage: page }));
+  };
+
   render() {
     const value = {
       state: { ...this.state },
-      search: this.performSearch,
+      action: {
+        search: this.performSearch,
+        incrementPage: this.incrementPage,
+        decrementPage: this.decrementPage,
+        setCurrentPage: this.setCurrentPage,
+      },
     };
     return <Context.Provider value={value}>{this.props.children}</Context.Provider>;
   }

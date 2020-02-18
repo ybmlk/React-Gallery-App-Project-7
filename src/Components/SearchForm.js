@@ -8,7 +8,7 @@ class SearchForm extends Component {
     const { context } = this.props;
     e.preventDefault();
     const searchText = this.searchInput.value;
-    context.search(searchText);
+    context.action.search(searchText);
     this.props.history.push(`/gallery/${searchText}`);
     e.currentTarget.reset();
   };
