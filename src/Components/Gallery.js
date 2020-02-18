@@ -6,13 +6,15 @@ import Loading from './Loading';
 
 class Gallery extends Component {
   componentDidMount() {
+    const { context } = this.props;
     // Responds to inputs provided directly in the url bar
     this.input = this.props.match.params.input;
-    this.props.onSearch(this.input);
+    context.search(this.input);
   }
 
   render() {
-    const { photos, loading, title } = this.props;
+    const { context } = this.props;
+    const { photos, loading, title } = context.state;
     let output;
 
     // If the current photo state isn't empty, it renders <Photo /> for each item(photo)

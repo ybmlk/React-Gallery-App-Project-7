@@ -5,9 +5,10 @@ class SearchForm extends Component {
   // Fetchs from Flickr API based on the search input
   // updates the current route
   handleSubmit = e => {
+    const { context } = this.props;
     e.preventDefault();
     const searchText = this.searchInput.value;
-    this.props.onSearch(searchText);
+    context.search(searchText);
     this.props.history.push(`/gallery/${searchText}`);
     e.currentTarget.reset();
   };
