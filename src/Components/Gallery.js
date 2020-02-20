@@ -7,21 +7,20 @@ import Modal from './Modal';
 
 class Gallery extends Component {
   state = {
+    photosLength: null,
     modalImg: '',
     modalImgId: null,
   };
 
   componentDidMount() {
-    const { context } = this.props;
     // Returns result for query provided directly in the url bar
     this.input = this.props.match.params.input;
-    context.action.search(this.input);
+    this.props.context.action.search(this.input);
 
     // Allows navigating between modals using the keyboard left and right keys
     window.addEventListener('keyup', e => {
       // If a modal is open...
       if (this.state.modalImg) {
-        console.log('hello')
         if (e.keyCode === 37) {
           this.prevModal();
         } else if (e.keyCode === 39) {
@@ -29,6 +28,13 @@ class Gallery extends Component {
         }
       }
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const photosLength = this.props.context.state.photos.length;
+    if (prevState.photosLength !== photosLength) {
+      this.setState(() => ({ photosLength }));
+    }
   }
 
   // When an image is clicked, opens a modal and displays a bigger image
@@ -44,7 +50,8 @@ class Gallery extends Component {
   // When next button is clicked, it loads the next image
   nextModal = () => {
     // Check if the current image is not the last one
-    if (this.state.modalImgId !== 23) {
+    const lastPhoto = this.state.photosLength - 1;
+    if (this.state.modalImgId < lastPhoto) {
       const nextImgId = this.state.modalImgId + 1;
       const nextImg = document.getElementById('photo-list').children[nextImgId].firstChild.src;
       this.setState(prevState => ({
@@ -81,12 +88,13 @@ class Gallery extends Component {
 
   render() {
     const { photos, loading, title } = this.props.context.state;
+    const {photosLength, modalImg, modalImgId} = this.state
     return (
       <div className='photo-container'>
         <h2>{photos.length ? title.toUpperCase() : null}</h2>
         <ul id='photo-list'>
           {photos.length ? (
-            // If the current photo state isn't empty, it renders <Photo /> for each item(photo)
+            // If the current photos array isn't empty, it renders <Photo /> for each item(photo)
             photos.map((photo, index) => (
               <Photo {...photo} key={index} zoom={this.zoomImage} index={index} />
             ))
@@ -100,12 +108,13 @@ class Gallery extends Component {
         </ul>
         {this.state.modalImg ? (
           <Modal
-            src={this.state.modalImg}
+            src={modalImg}
+            photosLength={photosLength}
+            modalId={modalImgId}
             next={this.nextModal}
             prev={this.prevModal}
             closeBtn={this.closeModalBtn}
             close={this.closeModal}
-            modalId={this.state.modalImgId}
           />
         ) : null}
       </div>
