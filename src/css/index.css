@@ -192,6 +192,7 @@ input {
   position: absolute;
   cursor: pointer;
   fill: white;
+  transition: transform 1s;
 }
 
 .modal-close-btn {
@@ -209,4 +210,10 @@ input {
   top: 50%;
   right: 8%;
   zoom: 1.5;
+}
+
+.modal-left-btn:hover,
+.modal-right-btn:hover,
+.modal-close-btn:hover {
+  transform: scale(1.5);
 }
