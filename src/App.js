@@ -22,7 +22,7 @@ const App = () => (
       <NavigationWithContext />
 
       <Switch>
-        <Route exact path='(/|/gallery)' render={() => <Redirect to='/gallery/nature' />} />
+        <Route exact path='(/|/gallery)' render={() => <Redirect to='/gallery/northern-lights' />} />
         <Route exact path='/gallery/:input' component={GalleryWithContext} />
         <Route component={Page404} />
       </Switch>

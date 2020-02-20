@@ -138,7 +138,7 @@ input {
 }
 
 .greyButton {
-  padding: 0.7rem 1.2rem; 
+  padding: 0.7rem 1.2rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -153,4 +153,60 @@ input {
 .pagination .active,
 .pagination button:hover {
   background-color: #275270;
+}
+/* Pagination styles --end */
+
+/* Modal style */
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  height: 100%;
+}
+
+.modal {
+  position: relative;
+  width: 95%;
+  height: 100%;
+  margin: auto;
+}
+
+.modal-img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  object-fit: cover;
+  height: 75%;
+  max-width: 75%;
+}
+
+.modal-left-btn,
+.modal-right-btn,
+.modal-close-btn {
+  position: absolute;
+  cursor: pointer;
+  fill: white;
+}
+
+.modal-close-btn {
+  top: 15px;
+  right: 1%;
+}
+
+.modal-left-btn {
+  top: 50%;
+  left: 8%;
+  zoom: 1.5;
+}
+
+.modal-right-btn {
+  top: 50%;
+  right: 8%;
+  zoom: 1.5;
 }

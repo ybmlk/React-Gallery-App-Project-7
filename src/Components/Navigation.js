@@ -8,20 +8,18 @@ const Navigation = ({ context }) => {
     <nav className='main-nav'>
       <ul>
         <li>
-          <NavLink to={`/gallery/nature`} onClick={() => context.action.search('nature')}>
-            Nature{' '}
+          <NavLink to={`/gallery/northern-lights`} onClick={() => context.action.search('northern-lights')}>
+            N. Lights
           </NavLink>
         </li>
         <li>
           <NavLink to={`/gallery/slow-loris`} onClick={() => context.action.search('slow-loris')}>
-            {' '}
-            Slow loris{' '}
+            Slow loris
           </NavLink>
         </li>
         <li>
-          <NavLink to={`/gallery/savanna`} onClick={() => context.action.search('savanna')}>
-            {' '}
-            Savanna{' '}
+          <NavLink to={`/gallery/savanna`} onClick={() => context.action.search('panda')}>
+            Panda
           </NavLink>
         </li>
       </ul>

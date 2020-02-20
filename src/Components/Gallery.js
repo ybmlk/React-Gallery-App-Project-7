@@ -3,37 +3,111 @@ import Photo from './Photo';
 import { withRouter } from 'react-router';
 import NotFound from './NotFound';
 import Loading from './Loading';
+import Modal from './Modal';
 
 class Gallery extends Component {
+  state = {
+    modalImg: '',
+    modalImgId: null,
+  };
+
   componentDidMount() {
     const { context } = this.props;
-    // Responds to inputs provided directly in the url bar
+    // Returns result for query provided directly in the url bar
     this.input = this.props.match.params.input;
     context.action.search(this.input);
+
+    // Allows navigating between modals using the keyboard left and right keys
+    window.addEventListener('keyup', e => {
+      // If a modal is open...
+      if (this.state.modalImg) {
+        console.log('hello')
+        if (e.keyCode === 37) {
+          this.prevModal();
+        } else if (e.keyCode === 39) {
+          this.nextModal();
+        }
+      }
+    });
   }
 
-  render() {
-    const { context } = this.props;
-    const { photos, loading, title } = context.state;
-    let output;
+  // When an image is clicked, opens a modal and displays a bigger image
+  zoomImage = e => {
+    const clickedImg = e.target.src;
+    const clickedImgId = parseInt(e.currentTarget.parentNode.id);
+    this.setState(() => ({
+      modalImg: clickedImg,
+      modalImgId: clickedImgId,
+    }));
+  };
 
-    // If the current photo state isn't empty, it renders <Photo /> for each item(photo)
-    if (photos.length) {
-      output = photos.map((photo, index) => <Photo {...photo} key={index} />);
-
-      // If API is still fetiching(loading), it renders <Loading />
-    } else if (loading) {
-      output = <Loading />;
-
-      // After it finishes loading if there is no data, it renders <NotFound />
-    } else {
-      output = <NotFound />;
+  // When next button is clicked, it loads the next image
+  nextModal = () => {
+    // Check if the current image is not the last one
+    if (this.state.modalImgId !== 23) {
+      const nextImgId = this.state.modalImgId + 1;
+      const nextImg = document.getElementById('photo-list').children[nextImgId].firstChild.src;
+      this.setState(prevState => ({
+        modalImg: nextImg,
+        modalImgId: prevState.modalImgId + 1,
+      }));
     }
+  };
 
+  // When Previous button is clicked, it loads the previous image
+  prevModal = () => {
+    // Check if the current image is not the first one
+    if (this.state.modalImgId !== 0) {
+      const prevImgId = this.state.modalImgId - 1;
+      const prevImg = document.getElementById('photo-list').children[prevImgId].firstChild.src;
+      this.setState(prevState => ({
+        modalImg: prevImg,
+        modalImgId: prevState.modalImgId - 1,
+      }));
+    }
+  };
+
+  // Closes image when clicked anywhere outside the image
+  closeModal = e => {
+    if (e.target.tagName === 'DIV') {
+      this.setState(() => ({ modalImg: '' }));
+    }
+  };
+
+  // Closes the image when the 'X' button is clicked
+  closeModalBtn = () => {
+    this.setState(() => ({ modalImg: '' }));
+  };
+
+  render() {
+    const { photos, loading, title } = this.props.context.state;
     return (
       <div className='photo-container'>
         <h2>{photos.length ? title.toUpperCase() : null}</h2>
-        <ul>{output}</ul>
+        <ul id='photo-list'>
+          {photos.length ? (
+            // If the current photo state isn't empty, it renders <Photo /> for each item(photo)
+            photos.map((photo, index) => (
+              <Photo {...photo} key={index} zoom={this.zoomImage} index={index} />
+            ))
+          ) : loading ? (
+            // If API is still fetiching(loading), it renders <Loading />
+            <Loading />
+          ) : (
+            // After it finishes loading if there is no data, it renders <NotFound />
+            <NotFound />
+          )}
+        </ul>
+        {this.state.modalImg ? (
+          <Modal
+            src={this.state.modalImg}
+            next={this.nextModal}
+            prev={this.prevModal}
+            closeBtn={this.closeModalBtn}
+            close={this.closeModal}
+            modalId={this.state.modalImgId}
+          />
+        ) : null}
       </div>
     );
   }

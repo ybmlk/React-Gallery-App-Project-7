@@ -27,7 +27,7 @@ class Pagination extends Component {
       this.search(query);
       // Scrolls the screen to the top
       window.scrollTo({
-        top: 240,
+        top: 0,
         behavior: 'smooth',
       });
     }
