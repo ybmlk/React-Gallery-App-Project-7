@@ -1,100 +1,61 @@
 # React Gallery App
 
+### Table of Contents
+
+- [Description](#Description)
+- [Technologies](#Technologies)
+- [How To Install](#How-To-Install)
+- [License](#License)
+- [Author](#Author)
 
 ## Description
-> This program is a photo gallery that fetches photos from the Flickr API and displays them.
-> 
-> To Visit the app:
-[Click here](https://flickr-react-gallery-app.netlify.com/)
 
-> Program features:
-> * Allows searching for all kinds of images 
-> * The navigation buttons display 'nature', 'Slow loris', and 'Savanna' photos
+Built with React framework a gallery for displaying photos. Fetches the photos from Flickr API. Allows searching for all kinds of photos. The navigation buttons will load photos of 'Northern lights', 'Slow loris', and 'Panda'. Pagination at the bottom allows loading more pages.
 
-> Styling Changes:
-> * Background color of the body is slightly grey
-> * The Navigation buttons and the search bar border are light blue
+---
 
-> To run this program:
-> * Step 1: create a 'config.js' file inside the 'src' folder
-> * Step 2: Inside the config.js file:
-```
-const apiKey = '{your flickr API key}';
-export default apiKey;
-```
-> * Step 3: Run `npm start`
+## Technologies
 
-## Contributor
+- Javascript
+- React
+- HTML
+- CSS
 
-> Yonatan Melka 
+## How To Install
 
-#==============================================================================#
+1. Download project files
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+2. Run `npm install` to install project dependencies
 
-## Available Scripts
+3. Create a `config.js` file inside the `src` folder
 
-In the project directory, you can run:
+4. Inside the `config.js` file add your flickr API key using the template below
 
-### `npm start`
+      ```
+      const apiKey = '{your flickr API key}';
+      export default apiKey;
+      ```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. Run `npm start` to launch the app
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+6. The project is live at `http://localhost:3000/`
 
-### `npm test`
+## License
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The MIT License (MIT)
 
-### `npm run build`
+Copyright (c) 2019 Tyler Harper
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Author
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Yonatan Melka
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+email: [ybmelka2@gmail.com](mailto:ybmelka2@gmail.com)
