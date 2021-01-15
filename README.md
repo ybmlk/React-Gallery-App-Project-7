@@ -12,7 +12,7 @@
 
 Built with React framework a gallery for displaying photos. Fetches the photos from Flickr API. Allows searching for all kinds of photos. The navigation buttons will load photos of 'Northern lights', 'Slow loris', and 'Panda'. Pagination at the bottom allows loading more pages.
 
-## This app is Live at: [https://react-gallery-app-proj.netlify.app/gallery/northern-lights](https://react-gallery-app-proj.netlify.app/gallery/northern-lights)
+## This app is Live at: [https://react-gallery-app-proj.netlify.app/](https://react-gallery-app-proj.netlify.app/)
 
 ---
 
