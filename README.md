@@ -1,4 +1,4 @@
-# React Gallery App
+# Photo Gallery
 
 ### Table of Contents
 
